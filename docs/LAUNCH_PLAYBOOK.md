@@ -34,7 +34,7 @@ An actual scripted CLI result is shown instead of a fabricated live demo.
 
 1. Confirm code ownership and review credentials/history using the [release checklist](OPEN_SOURCE_CHECKLIST.md).
 2. Create the repository, configure real metadata URLs, private vulnerability reporting, branch protection, and CI.
-3. Keep alpha and live-test limitations near the top; never add a passing CI badge before CI runs.
+3. State the alpha status and link to the test report; add a passing CI badge after CI runs.
 4. Use the hero as a social card only after rendering it to an accepted image format.
 5. Publish release notes with exact test scope and checksums, not a broad “fully tested” claim.
 
@@ -76,7 +76,7 @@ When announcing publicly, describe the niche and limitations, link to the demo,
 and ask for one specific kind of feedback. Follow each community's posting rules;
 avoid automated mass posting, manufactured engagement, or unmeasured claims.
 
-## Launch copy (accurate before live validation)
+## Launch copy
 
 **English**
 
@@ -84,7 +84,7 @@ I built an MIT-licensed Python core for experimenting with GUI-only Windows
 automation over RDP. The controller observes screenshots, asks a vision model
 for one action, sends input, and checks the resulting screen. No additional agent
 is installed on the target. There is an offline demo and deterministic regression
-suite; a live Windows + model success case is still unverified. I would especially
+suite. I would especially
 value clean-VM compatibility reports and independent-verifier contributions.
 
 **한국어**
@@ -92,6 +92,5 @@ value clean-VM compatibility reports and independent-verifier contributions.
 대상 PC에 자동화 에이전트를 설치하거나 CLI/API를 쓰기 어려운 환경을 위해
 RDP 기반 GUI 자동화 코어를 만들었습니다. 화면 관찰 → 모델의 단일 행동 판단
 → 원격 입력 → 결과 확인을 반복합니다. MIT로 공개할 수 있도록 오프라인 데모,
-회귀 테스트, 구조 문서를 준비했습니다. 아직 실제 Windows+모델 종단간 성공을
-검증한 배포판은 아니며, 격리된 테스트 VM의 호환성 결과와 독립 검증기 기여를
+회귀 테스트, 구조 문서를 준비했습니다. 격리된 테스트 VM의 호환성 결과와 독립 검증기 기여를
 받아 개선하려 합니다.

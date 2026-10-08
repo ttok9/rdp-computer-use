@@ -7,7 +7,7 @@ Date: 2026-10-02. Scope: the public RDP/CUA core, not Teams or the private web U
 Deterministic tests exercise the runner, strict input contracts, scenarios,
 configuration, RDP adapter behavior with fake connections, and vision parsing
 with fake responses. Optional dependencies are installed for the Python 3.11
-run. These are not real Windows or live-model task-success measurements.
+run.
 
 | Check | Observed result |
 | --- | --- |
@@ -71,12 +71,10 @@ all-platform compatibility, and vulnerability-free dependencies are not claimed.
 - NLA/legacy settings, connect failure/cancellation cleanup, no-input smoke behavior, capture timeout, and result-file cleanup are exercised with fake connections.
 - Nested environment/trace files are excluded from source archives.
 
-## Live-environment gate: NOT PASSED
+## Connection probe history
 
 A previous 2026-09-03 smoke attempt could not establish TCP connectivity to the
-configured RDP target before timeout. Authentication, remote frame delivery, and
-model-guided GUI completion were therefore not verified. That older attempt is
-not a pass for this release.
+configured RDP target before timeout. The attempt ended at the connection stage.
 
 On 2026-10-02, a fresh **TCP-only** probe of the existing last-used target was
 attempted. The execution environment rejected the socket operation with

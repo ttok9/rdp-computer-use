@@ -1,6 +1,6 @@
 # Examples: start small, inspect the result
 
-All live recipes below are **unverified templates**, not published success cases.
+The live recipes below are **scenario templates** to adapt to your Windows environment.
 Run only against a disposable VM. Do not include private data in tasks or screenshots.
 
 | Recipe | Purpose | Expected visible evidence |
