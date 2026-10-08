@@ -1,0 +1,2 @@
+"""Optional external-system adapters."""
+
