@@ -58,7 +58,7 @@ jobs:
           wheel-test/bin/rdp-cua demo
       - run: python tools/package_source.py --output rdp-computer-use-source.zip
       - run: python tools/verify_artifacts.py rdp-computer-use-source.zip
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: alpha-artifacts
           path: |
