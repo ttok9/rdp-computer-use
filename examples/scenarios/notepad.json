@@ -1,0 +1,17 @@
+{
+  "title": "Create a note",
+  "goal": "Open Notepad and type a short public demo message.",
+  "steps": [
+    {
+      "number": 1,
+      "title": "Open Notepad from the Windows search interface",
+      "verification": "A Notepad editor window is visible"
+    },
+    {
+      "number": 2,
+      "title": "Type Hello from RDP Computer-Use",
+      "verification": "The exact demo text is visible in the editor"
+    }
+  ]
+}
+

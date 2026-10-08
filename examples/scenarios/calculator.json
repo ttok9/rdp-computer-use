@@ -1,0 +1,8 @@
+{
+  "title": "Check a calculation",
+  "goal": "Use Windows Calculator's visible GUI to calculate 6 multiplied by 7. Do not use a terminal or edit files.",
+  "steps": [
+    {"number": 1, "title": "Open Calculator using Windows search", "verification": "A Calculator window is visible"},
+    {"number": 2, "title": "Enter 6 multiplied by 7 using the calculator controls", "verification": "The result displayed by Calculator is 42"}
+  ]
+}
