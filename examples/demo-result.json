@@ -1,0 +1,23 @@
+{
+  "status": "succeeded",
+  "reason": "the mock goal is complete",
+  "step_count": 2,
+  "steps": [
+    {
+      "number": 1,
+      "action": "left_click",
+      "decision_reason": "focus the editor",
+      "action_succeeded": true,
+      "goal_completed": false,
+      "verification": "mock accepted left_click"
+    },
+    {
+      "number": 2,
+      "action": "type",
+      "decision_reason": "enter the requested text",
+      "action_succeeded": true,
+      "goal_completed": false,
+      "verification": "mock accepted type"
+    }
+  ]
+}
