@@ -1,0 +1,20 @@
+name: Feature request
+description: Propose a focused improvement to RDP computer use.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What workflow is blocked?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and alternatives
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and verification
+      description: How should it be tested? Does it widen remote control or data exposure?
