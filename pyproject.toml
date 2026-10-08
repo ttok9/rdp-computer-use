@@ -27,10 +27,10 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["build>=1.2", "twine>=5"]
 rdp = ["aardwolf==0.2.13"]
-vision = ["openai>=1.30,<3"]
+vision = ["openai>=1.30,<4"]
 all = [
   "aardwolf==0.2.13",
-  "openai>=1.30,<3"
+  "openai>=1.30,<4"
 ]
 
 [project.scripts]
