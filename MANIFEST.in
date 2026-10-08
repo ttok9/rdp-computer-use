@@ -1,0 +1,14 @@
+include .env.example
+include .gitignore
+include CONTRIBUTING.md
+include LICENSE
+include README.md
+include README.ko.md
+include CHANGELOG.md
+include THIRD_PARTY_NOTICES.md
+include SECURITY.md
+recursive-include docs *.html *.json *.md *.png *.svg
+recursive-include examples *.json *.md
+recursive-include tests *.py
+recursive-include tools *.py
+recursive-include .github *.yml *.md

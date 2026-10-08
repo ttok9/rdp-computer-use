@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rdp-computer-use"
+version = "0.2.0a2"
+description = "GUI-only Windows automation over RDP with pluggable vision-language models"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [
+  {name = "RDP Computer-Use contributors"}
+]
+keywords = ["rdp", "computer-use", "automation", "vision-language-model", "windows"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Testing"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["build>=1.2", "twine>=5"]
+rdp = ["aardwolf==0.2.13"]
+vision = ["openai>=1.30,<3"]
+all = [
+  "aardwolf==0.2.13",
+  "openai>=1.30,<3"
+]
+
+[project.scripts]
+rdp-cua = "rdp_cua.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
