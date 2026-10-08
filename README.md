@@ -1,24 +1,47 @@
 <p align="center"><img src="docs/assets/hero.svg" alt="RDP Computer-Use — Turn a remote desktop into an automation interface" width="100%"></p>
 
-<p align="center"><strong>See the screen. Take one action. Check what changed.</strong><br>GUI-only Windows automation over RDP, with pluggable vision-language models.</p>
+<p align="center"><strong>Computer use for Windows desktops you cannot instrument.</strong><br>Bring an RDP connection and a vision model. Keep the target as it is.</p>
 
-<p align="center"><a href="LICENSE">MIT licensed</a> · Python 3.11+ · Alpha · <a href="README.ko.md">한국어</a></p>
+<p align="center"><a href="https://github.com/ttok9/rdp-computer-use/actions/workflows/ci.yml"><img src="https://github.com/ttok9/rdp-computer-use/actions/workflows/ci.yml/badge.svg?branch=main" alt="Main branch CI"></a></p>
+
+<p align="center"><a href="LICENSE">MIT licensed</a> · Python 3.11 / 3.12 · <a href="https://github.com/ttok9/rdp-computer-use/releases/tag/v0.2.0a2">Download alpha</a> · <a href="README.ko.md">한국어</a></p>
 
 <p align="center"><a href="#try-the-loop-without-a-server">Quick start</a> · <a href="docs/EXAMPLES.md">Examples</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/TEST_REPORT.md">Verification</a> · <a href="CONTRIBUTING.md">Contribute</a></p>
 
 Automate a Windows test machine even when you cannot install an agent, use a shell, or call the application's API. RDP Computer-Use runs on a separate controller: it reads desktop frames, asks a vision model for the next action, sends mouse/keyboard input over RDP, and checks the resulting screen.
 
-**Built for GUI validation workflows.** A small, inspectable core—not a replacement for reliable APIs or deterministic test assertions when those are available.
+**Built for RDP-only test labs and legacy desktop experiments.** The Python controller runs elsewhere. Swap the model, transport, or verifier through small interfaces; inspect each run as JSON. Reliable APIs and deterministic assertions remain the first choice when available.
 
-**The niche: you already have an RDP desktop, but cannot put automation inside it.** Keep the target as it is. Bring a controller and an image-capable model endpoint.
-
-> **Alpha, not production-ready.** Local tests cover the runner and adapter contracts with fakes. A real Windows + vision-model end-to-end pass has **not** been established for this release. There is no destructive-action approval gate. Use a disposable VM and read the [security boundaries](SECURITY.md).
+> **Alpha.** [Six public CI jobs passed](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061): core Python 3.11/3.12, adapters on Linux/macOS/Windows, and packaging. These checks use fakes; a real Windows + vision-model end-to-end pass is **not yet verified**. There is no destructive-action approval gate. Use a disposable VM and read the [security boundaries](SECURITY.md).
 
 ## Try the loop without a server
 
-Download/clone this repository, open its root directory, and use Python 3.11 or 3.12:
+**No RDP server, model key, or Git required.** With Python 3.11 or 3.12 installed, run the released offline demo:
+
+**macOS / Linux**
 
 ```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install https://github.com/ttok9/rdp-computer-use/releases/download/v0.2.0a2/rdp_computer_use-0.2.0a2-py3-none-any.whl
+.venv/bin/python -m rdp_cua demo
+```
+
+**Windows PowerShell**
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install https://github.com/ttok9/rdp-computer-use/releases/download/v0.2.0a2/rdp_computer_use-0.2.0a2-py3-none-any.whl
+.\.venv\Scripts\python.exe -m rdp_cua demo
+```
+
+Use `py -3.11` if that is your installed version. These commands call the virtual environment directly, without an activation-policy change. [Release files and SHA-256 checksums](https://github.com/ttok9/rdp-computer-use/releases/tag/v0.2.0a2).
+
+<details>
+<summary>Working on the source or connecting a real lab?</summary>
+
+```bash
+git clone https://github.com/ttok9/rdp-computer-use.git
+cd rdp-computer-use
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
@@ -26,6 +49,8 @@ rdp-cua demo
 ```
 
 On Windows PowerShell, replace the activation command with `.venv\Scripts\Activate.ps1`.
+
+</details>
 
 The demo uses a **scripted, in-memory desktop**, not a real model or RDP connection. It exercises the same runner and returns JSON with `status: "succeeded"` and two recorded steps. The base package has no runtime dependencies.
 
@@ -131,7 +156,7 @@ python -m build
 
 [Test report](docs/TEST_REPORT.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md)
 
-GitHub Actions is configured for base tests, optional adapters, and package checks; it has not been executed on a public repository yet. There are no claimed benchmark scores, savings, or real-task success rates.
+[The published alpha passed all six CI jobs](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061), including Linux/macOS/Windows adapter tests and wheel/sdist checks. The badge above tracks the current main branch. The test report preserves the earlier local evidence. CI does not establish live desktop-task success; no benchmark scores, savings, or real-task success rates are claimed.
 
 ## Boundaries worth knowing
 
@@ -156,6 +181,8 @@ The most useful contributions are reproducible Windows smoke results, redacted f
 Read the [contributor guide](CONTRIBUTING.md). If this solves a problem you have,
 **star the project to follow its progress**. Try one harmless scenario, report what
 broke, and help make the next release reproducible.
+
+**Want a concrete first contribution?** [Three scoped starting points](docs/FIRST_CONTRIBUTIONS.md) include a documentation check that needs no Windows VM. [Report a reproducible problem](https://github.com/ttok9/rdp-computer-use/issues/new?template=bug_report.yml) or [describe your use case](https://github.com/ttok9/rdp-computer-use/issues/new?template=feature_request.yml).
 
 ## FAQ
 

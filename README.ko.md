@@ -1,28 +1,59 @@
 # RDP Computer-Use
 
-**화면을 보고, 한 번 행동하고, 결과를 확인하는 RDP 기반 GUI 자동화.**
+**에이전트를 설치하기 어려운 Windows 데스크톱을 RDP로 자동화합니다.**
+
+[![main 브랜치 CI](https://github.com/ttok9/rdp-computer-use/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ttok9/rdp-computer-use/actions/workflows/ci.yml)
 
 [English](README.md) · [MIT](LICENSE) · [빠른 시작](docs/QUICKSTART.md) · [테스트 기록](docs/TEST_REPORT.md)
+
+[알파 다운로드](https://github.com/ttok9/rdp-computer-use/releases/tag/v0.2.0a2) · [작게 시작하는 기여](docs/FIRST_CONTRIBUTIONS.md)
 
 **이미 RDP로 접속하는 PC는 있지만, 그 안에 자동화를 설치할 수 없을 때.**
 이 프로젝트가 집중하는 문제입니다. API·CLI가 있는 작업은 해당 도구를 우선 사용하세요.
 
 대상 PC에 자동화 에이전트를 설치하거나 CLI·애플리케이션 API를 사용할 수 없는 환경에서, 별도의 컨트롤러가 RDP 화면과 키보드·마우스 입력으로 Windows GUI를 제어합니다. GUI 검증 업무를 위한 작고 교체 가능한 핵심 런타임입니다. API가 있는 작업까지 GUI로 바꾸자는 프로젝트는 아닙니다.
 
-![시스템 구조도](docs/assets/architecture.png)
+> **알파 단계입니다.** Python 3.11/3.12 코어, Linux·macOS·Windows 어댑터, 패키징 등 [공개 CI 6개 작업이 통과](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061)했습니다. 모의 객체 기반 검증이며, 실제 Windows + 비전 모델의 종단간 성공은 아직 확인되지 않았습니다.
 
 ## 서버 없이 시작하기
 
-저장소를 다운로드한 뒤 루트 폴더에서 Python 3.11 또는 3.12로 실행합니다.
+**RDP 서버·모델 키·Git 없이 실행할 수 있습니다.** Python 3.11 또는 3.12를 준비한 뒤 배포된 오프라인 데모를 실행하세요.
+
+**macOS / Linux**
 
 ```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install https://github.com/ttok9/rdp-computer-use/releases/download/v0.2.0a2/rdp_computer_use-0.2.0a2-py3-none-any.whl
+.venv/bin/python -m rdp_cua demo
+```
+
+**Windows PowerShell**
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install https://github.com/ttok9/rdp-computer-use/releases/download/v0.2.0a2/rdp_computer_use-0.2.0a2-py3-none-any.whl
+.\.venv\Scripts\python.exe -m rdp_cua demo
+```
+
+Python 3.11만 설치했다면 `py -3.11`을 사용하세요. 가상환경을 직접 실행하므로 활성화 정책을 변경할 필요가 없습니다. [배포 파일·SHA-256 체크섬](https://github.com/ttok9/rdp-computer-use/releases/tag/v0.2.0a2).
+
+<details>
+<summary>소스를 수정하거나 실제 테스트 VM을 연결하려면</summary>
+
+```bash
+git clone https://github.com/ttok9/rdp-computer-use.git
+cd rdp-computer-use
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
 rdp-cua demo
 ```
 
-Windows PowerShell에서는 활성화 명령을 `.venv\Scripts\Activate.ps1`로 바꿉니다. 데모는 실제 Windows나 AI가 아닌 **스크립트 기반 모의 데스크톱**으로 동일한 실행 루프를 검증합니다.
+Windows PowerShell에서는 활성화 명령을 `.venv\Scripts\Activate.ps1`로 바꿉니다.
+
+</details>
+
+데모는 실제 Windows나 AI가 아닌 **스크립트 기반 모의 데스크톱**으로 동일한 실행 루프를 검증합니다. 정상 실행 시 JSON에 `status: "succeeded"`와 2개 단계가 표시됩니다.
 
 ![실제 오프라인 데모 명령의 출력이며 Windows 실행 영상이 아닙니다](docs/assets/demo.svg)
 
@@ -58,6 +89,8 @@ rdp-cua run --env-file .env --scenario examples/scenarios/notepad.json --output 
 
 ## 핵심 기능
 
+![시스템 구조도](docs/assets/architecture.png)
+
 - 관찰 → 판단 → 단일 행동 → 재관찰 → 검증 루프
 - 드라이버·판단 모델·검증기 분리와 교체 가능한 Python 인터페이스
 - 단계별 타임아웃, 최대 단계 수, 동일 행동 반복 제한
@@ -77,6 +110,8 @@ rdp-cua run --env-file .env --scenario examples/scenarios/notepad.json --output 
 [영문 README](README.md) · [구조 설명](docs/ARCHITECTURE.md) · [실행 흐름도](docs/visualizations/control-loop.sequence.html) · [로드맵](docs/ROADMAP.md) · [기여 가이드](CONTRIBUTING.md)
 
 도움이 된다면 Star로 알려주세요. 실제 테스트 환경의 재현 가능한 결과와 민감정보를 제거한 오류 사례가 특히 도움이 됩니다.
+
+[첫 기여 작업 3가지](docs/FIRST_CONTRIBUTIONS.md)에서 Windows VM 없이 시작할 수 있는 문서 검증도 확인할 수 있습니다. [재현 가능한 문제 신고](https://github.com/ttok9/rdp-computer-use/issues/new?template=bug_report.yml) · [사용 사례 제안](https://github.com/ttok9/rdp-computer-use/issues/new?template=feature_request.yml).
 
 [공개·데모 준비 가이드](docs/LAUNCH_PLAYBOOK.md)에는 인기 오픈소스의 구성에서
 참고한 점, 참고 저장소, 실제 데모 촬영 순서, 성능을 과장하지 않는 평가 방법을 정리했습니다.
