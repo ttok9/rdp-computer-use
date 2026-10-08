@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {"title": "RDP Computer-Use: From Goal to GUI", "locale": "en", "quality_profile": "showcase", "viewBox": [1120, 660]},
+  "components": [
+    {"id": "entry_cli", "type": "frontend", "label": "CLI / Python", "sublabel": "Goal or scenario", "pos": [35, 275], "size": [155, 75]},
+    {"id": "bounded_runner", "type": "backend", "label": "ComputerUseRunner", "sublabel": "Observe - act - verify", "pos": [330, 275], "size": [185, 75]},
+    {"id": "rdp_transport", "type": "backend", "label": "AardwolfDriver", "sublabel": "Frames and input events", "pos": [660, 275], "size": [170, 75]},
+    {"id": "remote_gui", "type": "external", "label": "Windows Desktop", "sublabel": "No target-side agent", "pos": [960, 275], "size": [145, 75]},
+    {"id": "vision_service", "type": "cloud", "label": "Vision Endpoint", "sublabel": "Decision + verification", "pos": [330, 65], "size": [185, 75]},
+    {"id": "runtime_control", "type": "backend", "label": "TaskControl", "sublabel": "Pause / resume / cancel", "pos": [35, 65], "size": [155, 75]},
+    {"id": "result_contract", "type": "backend", "label": "TaskResult", "sublabel": "Status and step history", "pos": [330, 490], "size": [185, 75]}
+  ],
+  "connections": [
+    {"id": "submit_goal", "from": "entry_cli", "to": "bounded_runner", "label": "goal + limits", "variant": "emphasis"},
+    {"id": "invoke_rdp", "from": "bounded_runner", "to": "rdp_transport", "label": "capture / execute", "variant": "emphasis"},
+    {"id": "rdp_wire", "from": "rdp_transport", "to": "remote_gui", "label": "RDP", "variant": "emphasis"},
+    {"id": "model_request", "from": "bounded_runner", "to": "vision_service", "label": "image + context"},
+    {"id": "control_stages", "from": "runtime_control", "to": "entry_cli", "label": "Python control", "labelDy": 60},
+    {"id": "emit_result", "from": "bounded_runner", "to": "result_contract", "label": "return JSON", "labelDy": 60}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "Agentless Target", "items": ["RDP transports pixels and ordinary input", "No shell, extension, or resident agent"]},
+    {"dot": "amber", "title": "Bounded Runtime", "items": ["One validated action per model response", "Timeout, cancel, and repetition controls"]},
+    {"dot": "violet", "title": "Replaceable Adapters", "items": ["Core tests need no desktop or API key", "Vision and desktop ports are independent"]}
+  ]
+}

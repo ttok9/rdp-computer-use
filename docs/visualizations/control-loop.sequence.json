@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {"title": "One Verified Computer-Use Step", "locale": "en", "quality_profile": "showcase", "column_fit": "spread", "viewBox": [1050, 790]},
+  "participants": [
+    {"id": "task_runtime", "type": "backend", "label": "CUA Runner", "sublabel": "bounded task"},
+    {"id": "desktop_port", "type": "backend", "label": "RDP Driver", "sublabel": "aardwolf"},
+    {"id": "target_session", "type": "external", "label": "Windows PC", "sublabel": "GUI target"},
+    {"id": "vision_endpoint", "type": "cloud", "label": "Vision Model", "sublabel": "decision + check"}
+  ],
+  "messages": [
+    {"id": "request_frame", "from": "task_runtime", "to": "desktop_port", "y": 180, "label": "capture screen"},
+    {"id": "return_frame", "from": "desktop_port", "to": "task_runtime", "y": 220, "label": "latest RDP frame", "variant": "return"},
+    {"id": "next_decision", "from": "task_runtime", "to": "vision_endpoint", "y": 270, "label": "goal + screenshot + history", "variant": "emphasis"},
+    {"id": "next_action", "from": "vision_endpoint", "to": "task_runtime", "y": 315, "label": "one action or completion", "variant": "return"},
+    {"id": "dispatch_input", "from": "task_runtime", "to": "desktop_port", "y": 375, "label": "execute action", "variant": "emphasis"},
+    {"id": "remote_input", "from": "desktop_port", "to": "target_session", "y": 415, "label": "mouse / keyboard / wheel", "variant": "emphasis"},
+    {"id": "updated_frame", "from": "target_session", "to": "desktop_port", "y": 455, "label": "desktop updates", "variant": "return"},
+    {"id": "capture_after", "from": "task_runtime", "to": "desktop_port", "y": 510, "label": "capture after action"},
+    {"id": "after_frame", "from": "desktop_port", "to": "task_runtime", "y": 550, "label": "current screen", "variant": "return"},
+    {"id": "verify_result", "from": "task_runtime", "to": "vision_endpoint", "y": 605, "label": "verify goal + action + screen"},
+    {"id": "verification_reply", "from": "vision_endpoint", "to": "task_runtime", "y": 650, "label": "visible evidence + verdict", "variant": "return"}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "One Action", "items": ["Validate before sending input", "Reobserve before deciding again"]},
+    {"dot": "amber", "title": "Bounded Execution", "items": ["Timeouts and cancellation cover every stage", "Repeated actions stop even after failed checks"]},
+    {"dot": "violet", "title": "Evidence, Not Certainty", "items": ["Model verification can still be wrong", "RDP frames arrive asynchronously"]}
+  ]
+}
