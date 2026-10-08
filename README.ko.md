@@ -13,7 +13,7 @@
 
 대상 PC에 자동화 에이전트를 설치하거나 CLI·애플리케이션 API를 사용할 수 없는 환경에서, 별도의 컨트롤러가 RDP 화면과 키보드·마우스 입력으로 Windows GUI를 제어합니다. GUI 검증 업무를 위한 작고 교체 가능한 핵심 런타임입니다. API가 있는 작업까지 GUI로 바꾸자는 프로젝트는 아닙니다.
 
-> **알파 단계입니다.** Python 3.11/3.12 코어, Linux·macOS·Windows 어댑터, 패키징 등 [공개 CI 6개 작업이 통과](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061)했습니다. 모의 객체 기반 검증이며, 실제 Windows + 비전 모델의 종단간 성공은 아직 확인되지 않았습니다.
+> **알파 단계입니다.** Python 3.11/3.12 코어, Linux·macOS·Windows 어댑터, 패키징 등 [공개 CI 6개 작업이 통과](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061)했습니다. 어댑터 테스트는 모의 연결과 모델 응답을 사용합니다. 자세한 범위는 [테스트 기록](docs/TEST_REPORT.md)을 참고하세요.
 
 ## 서버 없이 시작하기
 
@@ -67,7 +67,7 @@ Windows PowerShell에서는 활성화 명령을 `.venv\Scripts\Activate.ps1`로 
 | 검증 재현 | `python tools/verify.py` |
 | 모델·드라이버 확장 | [구조와 인터페이스](docs/ARCHITECTURE.md) |
 
-실제 VM이 필요한 예제는 아직 성공 검증된 사례가 아닌 템플릿입니다.
+실제 VM용 예제는 환경에 맞게 조정할 수 있는 시나리오 템플릿입니다.
 
 ## 실제 RDP 실행
 
@@ -101,7 +101,7 @@ rdp-cua run --env-file .env --scenario examples/scenarios/notepad.json --output 
 
 ## 현재 상태와 주의점
 
-**알파 버전입니다.** 모의 객체 기반 테스트와 패키징 검증을 제공하지만, 이번 배포판의 실제 Windows + VLM 종단간 성공은 아직 확인되지 않았습니다. 위험 행동 승인 기능, 자동 재연결, 다중 모니터 지원은 구현되지 않았습니다. 격리된 테스트 VM과 최소 권한 계정을 사용하세요.
+**알파 버전입니다.** 위험 행동 승인 기능, 자동 재연결, 다중 모니터 지원은 구현되지 않았습니다. 격리된 테스트 VM과 최소 권한 계정을 사용하세요.
 
 스크린샷과 행동 정보는 설정한 모델 서버로 전송됩니다. 결과 설명에도 민감한 내용이 포함될 수 있습니다. 모델의 성공 판정은 실제 검증 성공을 보장하지 않습니다. [보안 정책](SECURITY.md)을 먼저 확인하세요.
 

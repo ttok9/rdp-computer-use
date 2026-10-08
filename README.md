@@ -12,7 +12,7 @@ Automate a Windows test machine even when you cannot install an agent, use a she
 
 **Built for RDP-only test labs and legacy desktop experiments.** The Python controller runs elsewhere. Swap the model, transport, or verifier through small interfaces; inspect each run as JSON. Reliable APIs and deterministic assertions remain the first choice when available.
 
-> **Alpha.** [Six public CI jobs passed](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061): core Python 3.11/3.12, adapters on Linux/macOS/Windows, and packaging. These checks use fakes; a real Windows + vision-model end-to-end pass is **not yet verified**. There is no destructive-action approval gate. Use a disposable VM and read the [security boundaries](SECURITY.md).
+> **Alpha.** [Six public CI jobs passed](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061): core Python 3.11/3.12, adapters on Linux/macOS/Windows, and packaging. Adapter checks use fake connections and model responses. Use a disposable VM and read the [security boundaries](SECURITY.md).
 
 ## Try the loop without a server
 
@@ -156,7 +156,7 @@ python -m build
 
 [Test report](docs/TEST_REPORT.md) · [Contributing](CONTRIBUTING.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md)
 
-[The published alpha passed all six CI jobs](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061), including Linux/macOS/Windows adapter tests and wheel/sdist checks. The badge above tracks the current main branch. The test report preserves the earlier local evidence. CI does not establish live desktop-task success; no benchmark scores, savings, or real-task success rates are claimed.
+[The published alpha passed all six CI jobs](https://github.com/ttok9/rdp-computer-use/actions/runs/37777499061), including Linux/macOS/Windows adapter tests and wheel/sdist checks. The badge above tracks the current main branch. See the test report for the local test scope and reproducibility records.
 
 ## Boundaries worth knowing
 

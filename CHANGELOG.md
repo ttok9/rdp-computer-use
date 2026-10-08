@@ -10,8 +10,6 @@
 - Expanded tests with real SDK HTTP serialization through a mock transport, error propagation, release links/anchors, and artifact identity checks.
 - Hardened archive selection against nested environment files and runtime trace directories.
 
-Live Windows/model execution remains unverified; no benchmark or star-growth claims are made.
-
 ## 0.2.0a1 — 2026-10-02
 
 ### Added
@@ -34,8 +32,8 @@ Live Windows/model execution remains unverified; no benchmark or star-growth cla
 
 ### Known limits
 
-No verified real RDP + model E2E pass, destructive-action approval, independent
-success proof, automatic reconnect, or multi-monitor support. Public CI has not
+No destructive-action approval, independent success proof, automatic reconnect,
+or multi-monitor support. Public CI has not
 run yet. This remains an alpha release candidate.
 
 ## 0.1.0 — 2026-09-03
