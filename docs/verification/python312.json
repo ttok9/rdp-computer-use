@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "python": "3.12.14",
+  "platform": "Darwin",
+  "checks": [
+    {
+      "check": "release_content_and_links",
+      "passed": true,
+      "files": 70
+    },
+    {
+      "check": "unit_and_contract_tests",
+      "passed": true,
+      "discovered": 78,
+      "skipped": 14
+    },
+    {
+      "check": "bytecode_compile",
+      "passed": true
+    },
+    {
+      "check": "doctor",
+      "passed": true
+    },
+    {
+      "check": "offline_demo",
+      "passed": true
+    },
+    {
+      "check": "demo_fixture_matches",
+      "passed": true
+    },
+    {
+      "check": "scenario_calculator.json",
+      "passed": true
+    },
+    {
+      "check": "scenario_notepad.json",
+      "passed": true
+    },
+    {
+      "check": "scenario_notepad.md",
+      "passed": true
+    },
+    {
+      "check": "dependency_consistency",
+      "passed": true
+    },
+    {
+      "check": "source_zip_build",
+      "passed": true
+    },
+    {
+      "check": "source_zip_repeat",
+      "passed": true
+    },
+    {
+      "check": "zip_reproducibility_integrity_and_exact_membership",
+      "passed": true
+    }
+  ],
+  "not_covered": [
+    "live RDP",
+    "live model",
+    "public CI",
+    "browser rendering",
+    "dependency vulnerability audit"
+  ],
+  "verification_date": "2026-10-02",
+  "python_source_tree_sha256": "978421eba478be2bcfbf60f035ff77731ba0de0373fb1951d811f98c565cb4de",
+  "binding": "sha256 of sorted relative path + NUL + bytes for each .py in src/rdp_cua, tests, tools; folders in that order"
+}
