@@ -1,0 +1,2 @@
+# Keep diagram bytes identical to their recorded SHA-256 on every platform.
+docs/visualizations/*.html text eol=lf
